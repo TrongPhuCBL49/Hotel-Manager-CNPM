@@ -34,9 +34,13 @@ namespace DAO
         //Kết nối
         public void connectDB()
         {
-            string strCon = "Data Source=DESKTOP-G5TUN54;" +
-                            "Initial Catalog=SimpleQuanLyKhachSan;" +
-                            "Integrated Security=True";
+            //string strCon = "Data Source=DESKTOP-G5TUN54;" +
+            //                "Initial Catalog=SimpleQuanLyKhachSan;" +
+            //                "Integrated Security=True";
+            string strCon = "Data Source=den1.mssql6.gear.host;" +
+                            "Initial Catalog=khachsan1;" +
+                            "User id=khachsan1;" +
+                            "Password=	Yy4z9nvm9~~X;";
             con = new SqlConnection(strCon);
             cmd = con.CreateCommand();
             try
