@@ -34,7 +34,7 @@ namespace DAO
         //Kết nối
         public void connectDB()
         {
-            string strCon = "Data Source=DESKTOP-G5TUN54;" +
+            string strCon = "Data Source=DESKTOP-QEPC0J9;" +
                             "Initial Catalog=SimpleQuanLyKhachSan;" +
                             "Integrated Security=True";
             con = new SqlConnection(strCon);
