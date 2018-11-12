@@ -129,5 +129,10 @@ namespace GUI
             report.DataSource = KhachHangBUS.Instance.DSKhachHang();
             report.ShowPreviewDialog();
         }
+
+        private void btnQuanLyUsers_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
