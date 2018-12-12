@@ -85,12 +85,22 @@ namespace DAO
         //Kết nối
         public void connectDB()
         {
-            string strCon = "Data Source="+_IP+";" +
-                            "Initial Catalog="+_DATABASE+";" +
-                            "Integrated Security=True;";
-
-            // "User id=NV1;" +
-            // "Password=123;";
+            string strCon;
+            if (_IP== "den1.mssql8.gear.host") {
+                strCon = "Data Source=" + _IP + ";" +
+                "Initial Catalog=" + _DATABASE + ";" +
+                //"Integrated Security=True;";
+                "User id=NV1;" +
+                "Password=123456@;";
+            }
+            else {
+                strCon = "Data Source=" + _IP + ";" +
+                         "Initial Catalog=" + _DATABASE + ";" +
+                         //"Integrated Security=True;";
+                         "User id=NV1;" +
+                         "Password=123;";
+            }
+            
             //"Integrated Security=True";
             con = new SqlConnection(strCon);
             cmd = con.CreateCommand();

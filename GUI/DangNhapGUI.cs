@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using BUS;
+using System.Data.SqlClient;
 
 namespace GUI
 {
@@ -34,11 +35,44 @@ namespace GUI
             IPServer = DangNhapBUS.Instance.GetIP();
             cmbServerIP.DataSource = IPServer;
         }
+
+        List<String> loadDatabase()
+        {
+            List<String> list = new List<string>();
+            string connectionString;
+            if (checkbOnline.Checked) {
+                connectionString = "Data Source=den1.mssql8.gear.host;User id = NV1;Password=123456@;";
+            }
+            else
+            { 
+                connectionString = "Data Source=" + cmbServerIP.Text + ";User id = NV1; " +
+               "Password=123;";
+            }
+            
+            
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
+                {
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            list.Add(dr[0].ToString());
+                        }
+                    }
+                }
+            }
+            return list;
+        }
         string ipAddress;
 
         void login()
         {
-            DangNhapBUS.DANGNHAP(cmbServerIP.SelectedItem.ToString(), txtDatabase.Text);
+            if(checkbOnline.Checked) { DangNhapBUS.DANGNHAP("den1.mssql8.gear.host", "nv1"); }
+            else { DangNhapBUS.DANGNHAP(cmbServerIP.Text, cmbDatabase.Text); }
+            
             if (DangNhapBUS.Instance.KiemTraUser(txtMaNhanVien.Text, txtMatKhau.Text))
             {
                 IdNhanVien = txtMaNhanVien.Text;
@@ -84,6 +118,25 @@ namespace GUI
             temp.Add("");
             cmbServerIP.DataSource = temp;
             cmbServerIP.DataSource = IPServer;
+        }
+
+        private void cmbServerIP_SelectedValueChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnKetnoiDB_Click(object sender, EventArgs e)
+        {
+            cmbDatabase.DataSource = loadDatabase();
+            try
+            {
+                
+            }
+            catch 
+            {
+                MessageBox.Show("Lỗi kết nối !");
+                cmbDatabase.DataSource = null;
+            }
         }
     }
 }
