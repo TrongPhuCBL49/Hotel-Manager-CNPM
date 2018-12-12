@@ -134,5 +134,11 @@ namespace GUI
         {
 
         }
+
+        private void btnSuDungDichVu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SuDungDichVuGUI suDungDichVuGUI = new SuDungDichVuGUI();
+            AddTabControl(suDungDichVuGUI, "Sử dụng Dịch vụ");
+        }
     }
 }
