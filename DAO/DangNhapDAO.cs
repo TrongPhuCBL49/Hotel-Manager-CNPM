@@ -35,5 +35,10 @@ namespace DAO
             DataTable dtb = DataProvider.Instance.getDS(query);
             return int.Parse(dtb.Rows[0]["IDChucDanh"].ToString());
         }
+        public List<string> GetIP()
+        {
+            List<String> list = DataProvider.QuetIP();
+            return list;
+        }
     }
 }

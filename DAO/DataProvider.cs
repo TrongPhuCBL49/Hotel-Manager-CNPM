@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using System.Net.NetworkInformation;
 
 namespace DAO
 {
     public class DataProvider
     {
+        public static string _IP { get; set; }
+        public static string _DATABASE { set; get; }
         private static DataProvider instance;
         public static DataProvider Instance
         {
@@ -31,12 +36,62 @@ namespace DAO
             connectDB();
         }
 
+        public static void _DANGNHAP(string ip, string database)
+        {
+            _IP = ip;
+            _DATABASE = database;
+        }
+        public static List<String> ListIP;
+        public static string ipAddress;
+        public static List<String> QuetIP()
+        {
+            ListIP = new List<string>();
+            string ipBase = "";
+
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ipBase = ip.ToString();
+                    ipAddress = ipBase;
+                }
+            }
+
+            String[] ipPart = ipBase.Split('.');
+            ipBase = ipPart[0] + "." + ipPart[1] + "." + ipPart[2] + ".";
+
+            for (int i = 0; i < 255; i++)
+            {
+                string ip = ipBase + i.ToString();
+
+                Ping p = new Ping();
+                p.PingCompleted += new PingCompletedEventHandler(P_PingCompleted);
+                p.SendAsync(ip, 100, ip);
+            }
+            ListIP.Add(ipAddress);
+            return ListIP;
+        }
+
+        public static void P_PingCompleted(object sender, PingCompletedEventArgs e)
+        {
+            PingReply pr = e.Reply;
+            if (e.Reply.Address.ToString() != "0.0.0.0" && e.Reply.Address.ToString() != ipAddress)
+            {
+                ListIP.Add(e.Reply.Address.ToString());
+            }
+        }
+
         //Kết nối
         public void connectDB()
         {
-            string strCon = "Data Source=DESKTOP-DBIPD3F;" +
-                            "Initial Catalog=SimpleQuanLyKhachSan;" +
-                            "Integrated Security=True";
+            string strCon = "Data Source="+_IP+";" +
+                            "Initial Catalog="+_DATABASE+";" +
+                            "Integrated Security=True;";
+
+            // "User id=NV1;" +
+            // "Password=123;";
+            //"Integrated Security=True";
             con = new SqlConnection(strCon);
             cmd = con.CreateCommand();
             try

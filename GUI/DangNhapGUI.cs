@@ -15,20 +15,30 @@ namespace GUI
     {
         public static string IdNhanVien = "";
         public static int IdChucDanh = -1;
-
         public DangNhapGUI()
         {
             InitializeComponent();
+            LoadIP();
             txtMaNhanVien.Focus();
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
+            
             login();
         }
 
+        List<String> IPServer;
+        private void LoadIP()
+        {
+            IPServer = DangNhapBUS.Instance.GetIP();
+            cmbServerIP.DataSource = IPServer;
+        }
+        string ipAddress;
+
         void login()
         {
+            DangNhapBUS.DANGNHAP(cmbServerIP.SelectedItem.ToString(), txtDatabase.Text);
             if (DangNhapBUS.Instance.KiemTraUser(txtMaNhanVien.Text, txtMatKhau.Text))
             {
                 IdNhanVien = txtMaNhanVien.Text;
@@ -60,6 +70,20 @@ namespace GUI
         {
             if (e.KeyCode == Keys.Enter)
                 login();
+        }
+
+        private void DangNhapGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoadIP_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Đa quét IP thành công!");
+            List<String> temp = new List<string>();
+            temp.Add("");
+            cmbServerIP.DataSource = temp;
+            cmbServerIP.DataSource = IPServer;
         }
     }
 }

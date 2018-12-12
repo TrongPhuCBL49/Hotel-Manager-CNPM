@@ -34,5 +34,15 @@ namespace BUS
         {
             return DangNhapDAO.Instance.IdChucDanh(idNhanVien);
         }
+
+        public static void DANGNHAP(string ip,string database)
+        {
+            DataProvider._DANGNHAP(ip, database);
+        }
+        public List<String> GetIP()
+        {
+            List<String> IPServer = DangNhapDAO.Instance.GetIP();
+            return IPServer;
+        }
     }
 }
