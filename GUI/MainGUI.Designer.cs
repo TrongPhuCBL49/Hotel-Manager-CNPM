@@ -103,14 +103,15 @@
             this.btnQuanLyUsers,
             this.barButtonItem1});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 24;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.ribbon.MaxItemId = 22;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.pageHeThong,
             this.pageDanhMucQuanLy,
             this.pageLeTan,
             this.pageBaoCao});
-            this.ribbon.Size = new System.Drawing.Size(2194, 346);
+            this.ribbon.Size = new System.Drawing.Size(772, 143);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // btnBoPhan
@@ -424,19 +425,21 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1496);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 402);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(2194, 76);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(772, 31);
             // 
             // tabMain
             // 
             this.tabMain.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeader;
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 346);
+            this.tabMain.Location = new System.Drawing.Point(0, 143);
+            this.tabMain.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedTabPage = this.xtraTabPage1;
-            this.tabMain.Size = new System.Drawing.Size(2194, 1150);
+            this.tabMain.Size = new System.Drawing.Size(772, 259);
             this.tabMain.TabIndex = 2;
             this.tabMain.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -445,26 +448,27 @@
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabPage1.Size = new System.Drawing.Size(2180, 1081);
+            this.xtraTabPage1.Size = new System.Drawing.Size(766, 231);
             this.xtraTabPage1.Text = "Trang chủ";
             // 
             // MainGUI
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2194, 1572);
+            this.ClientSize = new System.Drawing.Size(772, 433);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "MainGUI";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Quản lý khách sạn";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabMain)).EndInit();
             this.tabMain.ResumeLayout(false);
